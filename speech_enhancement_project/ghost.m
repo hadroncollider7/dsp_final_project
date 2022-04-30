@@ -20,11 +20,17 @@ SNR=30;
 pspeech=norm(s_clean,2);
 
 % L2 norm of desired noise
-pDesiredNoise=pspeech./(10^(SNR/20));
+pDesiredNoise=pspeech/(10^(SNR/20));
 
-% L2 norm of read in noise signal
-pnoise=norm()
-
+% L2 norm of read-in noise signal
+pnoise=norm(noise,2);
+% adjust L2 norm of the noise to be pdesirednoise
+noise=pnoise.*(pDesiredNoise)/pnoise;
+%add t=s+noise
+t=s_clean+noise;
+soundsc(t,8000);
+% [t]=addnoisex('sp01.wav','white.dat',SNR,'sp01_noisey_snr30.wav');
+% soundsc(t,8000);
 
 
 
