@@ -157,18 +157,19 @@ for i=1:30
         end
     end
 end
-%% ****************** PESQ for white noise *********************
+%% ****************** PESQ  *********************
 clc;
-clear i j k;
-clear clean_file;
-clear enhanced_s;
-% **********PESQ, ENHANCED SPEECH, WHITE NOISE *****************%
+clear variables;
+% ********** PESQ FOR ENHANCED SPEECH *****************%
 
 %***************** Create 30x4 matrix ******************
 % - Rows for 30 sentences
 % - Columns for 0, 10, 20, 30 dBs 
 % *****************************************************%
 pval_white_enhanced=zeros(30,4);
+pval_exhibition_enhanced=zeros(30,4);
+pval_train_enhanced=zeros(30,4);
+pval_street_enhanced=zeros(30,4);
 
 for i=1:30
     if i<10
@@ -176,9 +177,18 @@ for i=1:30
         for j=0:10:30
             % spXX.wav
             clean_file=['sp0' num2str(i) '.wav'];
-            % spXX_enhanced_snrX.wav
-            enhanced_s=['sp0' num2str(i) '_enhanced_snr' num2str(j) '.wav'];
-            pval_white_enhanced(i,k)=pesq(clean_file,enhanced_s);
+            
+            % spXX_enhanced_[noiseType]_snrX
+            enhanced_s_white=['sp0' num2str(i) '_enhanced_white_snr' num2str(j) '.wav'];
+            enhanced_s_exhibition=['sp0' num2str(i) '_enhanced_exhibition_snr' num2str(j) '.wav'];
+            enhanced_s_train=['sp0' num2str(i) '_enhanced_train_snr' num2str(j) '.wav'];
+            enhanced_s_street=['sp0' num2str(i) '_enhanced_street_snr' num2str(j) '.wav'];
+            
+            pval_white_enhanced(i,k)=pesq(clean_file,enhanced_s_white);
+            pval_exhibition_enhanced(i,k)=pesq(clean_file,enhanced_s_exhibition);
+            pval_train_enhanced(i,k)=pesq(clean_file,enhanced_s_train);
+            pval_street_enhanced(i,k)=pesq(clean_file,enhanced_s_street);
+
             k=k+1;
         end
     else
@@ -186,9 +196,18 @@ for i=1:30
         for j=0:10:30
             % spXX.wav
             clean_file=['sp' num2str(i) '.wav'];
-            % spXX_enhanced_snrX.wav
-            enhanced_s=['sp' num2str(i) '_enhanced_snr' num2str(j) '.wav'];
-            pval_white_enhanced(i,k)=pesq(clean_file,enhanced_s);
+
+            % spXX_enhanced_[noiseType]_snrX
+            enhanced_s_white=['sp' num2str(i) '_enhanced_white_snr' num2str(j) '.wav'];
+            enhanced_s_exhibition=['sp' num2str(i) '_enhanced_exhibition_snr' num2str(j) '.wav'];
+            enhanced_s_train=['sp' num2str(i) '_enhanced_train_snr' num2str(j) '.wav'];
+            enhanced_s_street=['sp' num2str(i) '_enhanced_street_snr' num2str(j) '.wav'];
+            
+            pval_white_enhanced(i,k)=pesq(clean_file,enhanced_s_white);
+            pval_exhibition_enhanced(i,k)=pesq(clean_file,enhanced_s_exhibition);
+            pval_train_enhanced(i,k)=pesq(clean_file,enhanced_s_train);
+            pval_street_enhanced(i,k)=pesq(clean_file,enhanced_s_street);
+
             k=k+1;
         end
     end
