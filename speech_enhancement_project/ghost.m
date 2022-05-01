@@ -67,8 +67,8 @@ legend('Enhanced Signel','Noisey Signel')
 
 %% ************************* PART 9 ********************************
 %* DO NOT RUN WILLY NILLY!!!!! 
-% Part 1. Add white noise to all clean speech files at 
-%   SNR 0, 10, 20, and 30 dB
+% -Part 1. Add white, exhibition, train, and street noise to all 
+%   clean speech files at SNR 0, 10, 20, and 30 dB
 % ******************************************************************%
 clear variables;clc;clf;close all;
 for i=1:30
@@ -76,17 +76,33 @@ for i=1:30
         for j=0:10:30
             % spXX.wav
             clean_file=['sp0' num2str(i) '.wav'];
-            % spXX_noisy_snrX.wav
-            noisy_file=['sp0' num2str(i) '_noisy_snr' num2str(j) '.wav'];
-            [t]=addnoisex(clean_file,'white.dat',j,noisy_file);
-        end
+            
+            % spXX_noisy_[noiseType]_snrX.wav
+            noisy_file_white=['sp0' num2str(i) '_noisy_white_snr' num2str(j) '.wav'];
+            noisy_file_exhibition=['sp0' num2str(i) '_noisy_exhibition_snr' num2str(j) '.wav'];
+            noisy_file_train=['sp0' num2str(i) '_noisy_train_snr' num2str(j) '.wav'];
+            noisy_file_street=['sp0' num2str(i) '_noisy_street_snr' num2str(j) '.wav'];
+            
+            [t_white]=addnoisex(clean_file,'white.dat',j,noisy_file_white);
+            [t_exhib]=addnoisex(clean_file,'exhibition.dat',j,noisy_file_exhibition);
+            [t_train]=addnoisex(clean_file,'train.dat',j,noisy_file_train);
+            [t_stree]=addnoisex(clean_file,'street.dat',j,noisy_file_street);
+       end
     else
         for j=0:10:30
             % spXX.wav
             clean_file=['sp' num2str(i) '.wav'];
-            % spXX_noisy_snrX.wav
-            noisy_file=['sp' num2str(i) '_noisy_snr' num2str(j) '.wav'];
-            [t]=addnoisex(clean_file,'white.dat',j,noisy_file);
+
+            % spXX_noisy_[noiseType]_snrX.wav
+            noisy_file_white=['sp' num2str(i) '_noisy_white_snr' num2str(j) '.wav'];
+            noisy_file_exhibition=['sp' num2str(i) '_noisy_exhibition_snr' num2str(j) '.wav'];
+            noisy_file_train=['sp' num2str(i) '_noisy_train_snr' num2str(j) '.wav'];
+            noisy_file_street=['sp' num2str(i) '_noisy_street_snr' num2str(j) '.wav'];
+            
+            [t_white]=addnoisex(clean_file,'white.dat',j,noisy_file_white);
+            [t_exhib]=addnoisex(clean_file,'exhibition.dat',j,noisy_file_exhibition);
+            [t_train]=addnoisex(clean_file,'train.dat',j,noisy_file_train);
+            [t_stree]=addnoisex(clean_file,'street.dat',j,noisy_file_street);
         end
     end
 end
