@@ -267,16 +267,264 @@ for i=1:30
     end
 end
 
+%% ******************* 95% CONFIDENCE INTERALS ************************
+clear variables;clc;clf;close all;
+load('pesq_values_workspace.mat');
+%****************** SNR 0 ********************%
+n=30; % no. of observations
+Z=1.96; % Z-value of 95% confidence interval
+% enhanced speech
+snr0_enh_mean_pesq=zeros(1,4); % [white, exhibition, train, street]
+snr0_enh_std_pesq=zeros(1,4);
+snr0_enh_CI=zeros(1,4);
+% noise corrupted speech
+snr0_noi_mean_pesq=zeros(1,4); % [white, exhibition, train, street]
+snr0_noi_std_pesq=zeros(1,4);
+snr0_noi_CI=zeros(1,4);
+
+% white noise
+i=1;
+snr0_enh_mean_pesq(i)=mean(pval_white_enhanced(:,1));
+snr0_enh_std_pesq(i)=std(pval_white_enhanced(:,1));
+snr0_enh_CI(i)=Z*snr0_enh_std_pesq(i)/(sqrt(n));
+
+snr0_noi_mean_pesq(i)=mean(pval_white_noisy(:,1));
+snr0_noi_std_pesq(i)=std(pval_white_noisy(:,1));
+snr0_noi_CI(i)=Z*snr0_noi_std_pesq(i)/(sqrt(n));
 
 
+% exhibition noise, enhanced speech
+i=2;
+snr0_enh_mean_pesq(i)=mean(pval_exhibition_enhanced(:,1));
+snr0_enh_std_pesq(i)=std(pval_exhibition_enhanced(:,1));
+snr0_enh_CI(i)=Z*snr0_enh_std_pesq(i)/(sqrt(n));
+
+snr0_noi_mean_pesq(i)=mean(pval_exhibition_noisy(:,1));
+snr0_noi_std_pesq(i)=std(pval_exhibition_noisy(:,1));
+snr0_noi_CI(i)=Z*snr0_noi_std_pesq(i)/(sqrt(n));
 
 
+% train noise, enhanced speech
+i=3;
+snr0_enh_mean_pesq(i)=mean(pval_train_enhanced(:,1));
+snr0_enh_std_pesq(i)=std(pval_train_enhanced(:,1));
+snr0_enh_CI(i)=Z*snr0_enh_std_pesq(i)/(sqrt(n));
+
+snr0_noi_mean_pesq(i)=mean(pval_train_noisy(:,1));
+snr0_noi_std_pesq(i)=std(pval_train_noisy(:,1));
+snr0_noi_CI(i)=Z*snr0_noi_std_pesq(i)/(sqrt(n));
+
+% street noise, enhanced speech
+i=4;
+snr0_enh_mean_pesq(i)=mean(pval_street_enhanced(:,1));
+snr0_enh_std_pesq(i)=std(pval_street_enhanced(:,1));
+snr0_enh_CI(i)=Z*snr0_enh_std_pesq(i)/(sqrt(n));
+
+snr0_noi_mean_pesq(i)=mean(pval_street_noisy(:,1));
+snr0_noi_std_pesq(i)=std(pval_street_noisy(:,1));
+snr0_noi_CI(i)=Z*snr0_noi_std_pesq(i)/(sqrt(n));
 
 
+%% ****************** SNR 10 ********************
+% enhanced speech
+snr10_enh_mean_pesq=zeros(1,4); % [white, exhibition, train, street]
+snr10_enh_std_pesq=zeros(1,4);
+snr10_enh_CI=zeros(1,4);
+% noise corrupted speech
+snr10_noi_mean_pesq=zeros(1,4); % [white, exhibition, train, street]
+snr10_noi_std_pesq=zeros(1,4);
+snr10_noi_CI=zeros(1,4);
+
+% white noise
+i=1;
+snr10_enh_mean_pesq(i)=mean(pval_white_enhanced(:,2));
+snr10_enh_std_pesq(i)=std(pval_white_enhanced(:,2));
+snr10_enh_CI(i)=Z*snr10_enh_std_pesq(i)/(sqrt(n));
+
+snr10_noi_mean_pesq(i)=mean(pval_white_noisy(:,2));
+snr10_noi_std_pesq(i)=std(pval_white_noisy(:,2));
+snr10_noi_CI(i)=Z*snr10_noi_std_pesq(i)/(sqrt(n));
 
 
+% exhibition noise, enhanced speech
+i=2;
+snr10_enh_mean_pesq(i)=mean(pval_exhibition_enhanced(:,2));
+snr10_enh_std_pesq(i)=std(pval_exhibition_enhanced(:,2));
+snr10_enh_CI(i)=Z*snr10_enh_std_pesq(i)/(sqrt(n));
+
+snr10_noi_mean_pesq(i)=mean(pval_exhibition_noisy(:,2));
+snr10_noi_std_pesq(i)=std(pval_exhibition_noisy(:,2));
+snr10_noi_CI(i)=Z*snr10_noi_std_pesq(i)/(sqrt(n));
 
 
+% train noise, enhanced speech
+i=3;
+snr10_enh_mean_pesq(i)=mean(pval_train_enhanced(:,2));
+snr10_enh_std_pesq(i)=std(pval_train_enhanced(:,2));
+snr10_enh_CI(i)=Z*snr10_enh_std_pesq(i)/(sqrt(n));
+
+snr10_noi_mean_pesq(i)=mean(pval_train_noisy(:,2));
+snr10_noi_std_pesq(i)=std(pval_train_noisy(:,2));
+snr10_noi_CI(i)=Z*snr10_noi_std_pesq(i)/(sqrt(n));
+
+% street noise, enhanced speech
+i=4;
+snr10_enh_mean_pesq(i)=mean(pval_street_enhanced(:,2));
+snr10_enh_std_pesq(i)=std(pval_street_enhanced(:,2));
+snr10_enh_CI(i)=Z*snr10_enh_std_pesq(i)/(sqrt(n));
+
+snr10_noi_mean_pesq(i)=mean(pval_street_noisy(:,2));
+snr10_noi_std_pesq(i)=std(pval_street_noisy(:,2));
+snr10_noi_CI(i)=Z*snr10_noi_std_pesq(i)/(sqrt(n));
+
+
+%% ****************** SNR 20 ********************
+% enhanced speech
+snr20_enh_mean_pesq=zeros(1,4); % [white, exhibition, train, street]
+snr20_enh_std_pesq=zeros(1,4);
+snr20_enh_CI=zeros(1,4);
+% noise corrupted speech
+snr20_noi_mean_pesq=zeros(1,4); % [white, exhibition, train, street]
+snr20_noi_std_pesq=zeros(1,4);
+snr20_noi_CI=zeros(1,4);
+
+% white noise
+i=1;
+snr20_enh_mean_pesq(i)=mean(pval_white_enhanced(:,3));
+snr20_enh_std_pesq(i)=std(pval_white_enhanced(:,3));
+snr20_enh_CI(i)=Z*snr20_enh_std_pesq(i)/(sqrt(n));
+
+snr20_noi_mean_pesq(i)=mean(pval_white_noisy(:,3));
+snr20_noi_std_pesq(i)=std(pval_white_noisy(:,3));
+snr20_noi_CI(i)=Z*snr20_noi_std_pesq(i)/(sqrt(n));
+
+
+% exhibition noise, enhanced speech
+i=2;
+snr20_enh_mean_pesq(i)=mean(pval_exhibition_enhanced(:,3));
+snr20_enh_std_pesq(i)=std(pval_exhibition_enhanced(:,3));
+snr20_enh_CI(i)=Z*snr20_enh_std_pesq(i)/(sqrt(n));
+
+snr20_noi_mean_pesq(i)=mean(pval_exhibition_noisy(:,3));
+snr20_noi_std_pesq(i)=std(pval_exhibition_noisy(:,3));
+snr20_noi_CI(i)=Z*snr20_noi_std_pesq(i)/(sqrt(n));
+
+
+% train noise, enhanced speech
+i=3;
+snr20_enh_mean_pesq(i)=mean(pval_train_enhanced(:,3));
+snr20_enh_std_pesq(i)=std(pval_train_enhanced(:,3));
+snr20_enh_CI(i)=Z*snr20_enh_std_pesq(i)/(sqrt(n));
+
+snr20_noi_mean_pesq(i)=mean(pval_train_noisy(:,3));
+snr20_noi_std_pesq(i)=std(pval_train_noisy(:,3));
+snr20_noi_CI(i)=Z*snr20_noi_std_pesq(i)/(sqrt(n));
+
+% street noise, enhanced speech
+i=4;
+snr20_enh_mean_pesq(i)=mean(pval_street_enhanced(:,3));
+snr20_enh_std_pesq(i)=std(pval_street_enhanced(:,3));
+snr20_enh_CI(i)=Z*snr20_enh_std_pesq(i)/(sqrt(n));
+
+snr20_noi_mean_pesq(i)=mean(pval_street_noisy(:,3));
+snr20_noi_std_pesq(i)=std(pval_street_noisy(:,3));
+snr20_noi_CI(i)=Z*snr20_noi_std_pesq(i)/(sqrt(n));
+
+%% ****************** SNR 30 ********************
+% enhanced speech
+snr30_enh_mean_pesq=zeros(1,4); % [white, exhibition, train, street]
+snr30_enh_std_pesq=zeros(1,4);
+snr30_enh_CI=zeros(1,4);
+% noise corrupted speech
+snr30_noi_mean_pesq=zeros(1,4); % [white, exhibition, train, street]
+snr30_noi_std_pesq=zeros(1,4);
+snr30_noi_CI=zeros(1,4);
+
+% white noise
+i=1;
+snr30_enh_mean_pesq(i)=mean(pval_white_enhanced(:,4));
+snr30_enh_std_pesq(i)=std(pval_white_enhanced(:,4));
+snr30_enh_CI(i)=Z*snr30_enh_std_pesq(i)/(sqrt(n));
+
+snr30_noi_mean_pesq(i)=mean(pval_white_noisy(:,4));
+snr30_noi_std_pesq(i)=std(pval_white_noisy(:,4));
+snr30_noi_CI(i)=Z*snr30_noi_std_pesq(i)/(sqrt(n));
+
+
+% exhibition noise, enhanced speech
+i=2;
+snr30_enh_mean_pesq(i)=mean(pval_exhibition_enhanced(:,4));
+snr30_enh_std_pesq(i)=std(pval_exhibition_enhanced(:,4));
+snr30_enh_CI(i)=Z*snr30_enh_std_pesq(i)/(sqrt(n));
+
+snr30_noi_mean_pesq(i)=mean(pval_exhibition_noisy(:,4));
+snr30_noi_std_pesq(i)=std(pval_exhibition_noisy(:,4));
+snr30_noi_CI(i)=Z*snr30_noi_std_pesq(i)/(sqrt(n));
+
+
+% train noise, enhanced speech
+i=3;
+snr30_enh_mean_pesq(i)=mean(pval_train_enhanced(:,4));
+snr30_enh_std_pesq(i)=std(pval_train_enhanced(:,4));
+snr30_enh_CI(i)=Z*snr30_enh_std_pesq(i)/(sqrt(n));
+
+snr30_noi_mean_pesq(i)=mean(pval_train_noisy(:,4));
+snr30_noi_std_pesq(i)=std(pval_train_noisy(:,4));
+snr30_noi_CI(i)=Z*snr30_noi_std_pesq(i)/(sqrt(n));
+
+% street noise, enhanced speech
+i=4;
+snr30_enh_mean_pesq(i)=mean(pval_street_enhanced(:,4));
+snr30_enh_std_pesq(i)=std(pval_street_enhanced(:,4));
+snr30_enh_CI(i)=Z*snr30_enh_std_pesq(i)/(sqrt(n));
+
+snr30_noi_mean_pesq(i)=mean(pval_street_noisy(:,4));
+snr30_noi_std_pesq(i)=std(pval_street_noisy(:,4));
+snr30_noi_CI(i)=Z*snr30_noi_std_pesq(i)/(sqrt(n));
+
+
+%% PLOTS OF 95% CONFIDENCE INTERVALS (4 PLOTS)
+clf; close all;
+figure(1)
+errorbar(snr0_enh_mean_pesq,snr0_enh_CI,'s','LineWidth',2)
+hold on;
+errorbar(snr0_noi_mean_pesq,snr0_noi_CI,'s','LineWidth',2)
+hold off;
+ax=gca;
+ax.XTick=[1 2 3 4];
+ax.XTickLabel={'White', 'Exhibition', 'Train', 'Street'};
+xlim([0 5])
+
+
+figure(2)
+errorbar(snr10_enh_mean_pesq,snr10_enh_CI,'s','LineWidth',2)
+hold on;
+errorbar(snr10_noi_mean_pesq,snr10_noi_CI,'s','LineWidth',2)
+hold off;
+ax=gca;
+ax.XTick=[1 2 3 4];
+ax.XTickLabel={'White', 'Exhibition', 'Train', 'Street'};
+xlim([0 5])
+
+figure(3)
+errorbar(snr20_enh_mean_pesq,snr20_enh_CI,'s','LineWidth',2)
+hold on;
+errorbar(snr20_noi_mean_pesq,snr20_noi_CI,'s','LineWidth',2)
+hold off;
+ax=gca;
+ax.XTick=[1 2 3 4];
+ax.XTickLabel={'White', 'Exhibition', 'Train', 'Street'};
+xlim([0 5])
+
+figure(4)
+errorbar(snr30_enh_mean_pesq,snr30_enh_CI,'s','LineWidth',2)
+hold on;
+errorbar(snr30_noi_mean_pesq,snr30_noi_CI,'s','LineWidth',2)
+hold off;
+ax=gca;
+ax.XTick=[1 2 3 4];
+ax.XTickLabel={'White', 'Exhibition', 'Train', 'Street'};
+xlim([0 5])
 
 
 
