@@ -106,24 +106,54 @@ for i=1:30
         end
     end
 end
-%% Enhance white noise corrupted speech
+%% ************** ENHANCE THE NOISE CORRUPTED SPEECH *****************
 clc;
 clear i j;
 clear enhanced_s noisy_file;
 for i=1:30
     if i<10
         for j=0:10:30
-            % spXX_noisy_snrX.wav
-            noisy_file=['sp0' num2str(i) '_noisy_snr' num2str(j) '.wav'];
-            % spXX_enhanced_snrX
-            enhanced_s=['sp0' num2str(i) '_enhanced_snr' num2str(j) '.wav'];
-            wiener_as(noisy_file,enhanced_s);
+            % The noise corrupted speech to be enhanced
+            % spXX_noisy_[noiseType]_snrX.wav
+            noisy_file_white=['sp0' num2str(i) '_noisy_white_snr' num2str(j) '.wav'];
+            noisy_file_exhibition=['sp0' num2str(i) '_noisy_exhibition_snr' num2str(j) '.wav'];
+            noisy_file_train=['sp0' num2str(i) '_noisy_train_snr' num2str(j) '.wav'];
+            noisy_file_street=['sp0' num2str(i) '_noisy_street_snr' num2str(j) '.wav'];
+            
+            % The output file .wav file containing the enhanced speech
+            % spXX_enhanced_[noiseType]_snrX
+            enhanced_s_white=['sp0' num2str(i) '_enhanced_white_snr' num2str(j) '.wav'];
+            enhanced_s_exhibition=['sp0' num2str(i) '_enhanced_exhibition_snr' num2str(j) '.wav'];
+            enhanced_s_train=['sp0' num2str(i) '_enhanced_train_snr' num2str(j) '.wav'];
+            enhanced_s_street=['sp0' num2str(i) '_enhanced_street_snr' num2str(j) '.wav'];
+            
+            % perform the enhancement
+            wiener_as(noisy_file_white,enhanced_s_white);
+            wiener_as(noisy_file_exhibition,enhanced_s_exhibition);
+            wiener_as(noisy_file_train,enhanced_s_train);
+            wiener_as(noisy_file_street,enhanced_s_street);
         end
     else
         for j=0:10:30
-            noisy_file=['sp' num2str(i) '_noisy_snr' num2str(j) '.wav'];
-            enhanced_s=['sp' num2str(i) '_enhanced_snr' num2str(j) '.wav'];
-            wiener_as(noisy_file,enhanced_s);
+            % The noise corrupted speech to be enhanced
+            % spXX_noisy_[noiseType]_snrX.wav
+            noisy_file_white=['sp' num2str(i) '_noisy_white_snr' num2str(j) '.wav'];
+            noisy_file_exhibition=['sp' num2str(i) '_noisy_exhibition_snr' num2str(j) '.wav'];
+            noisy_file_train=['sp' num2str(i) '_noisy_train_snr' num2str(j) '.wav'];
+            noisy_file_street=['sp' num2str(i) '_noisy_street_snr' num2str(j) '.wav'];
+            
+            % The output file .wav file containing the enhanced speech
+            % spXX_enhanced_[noiseType]_snrX
+            enhanced_s_white=['sp' num2str(i) '_enhanced_white_snr' num2str(j) '.wav'];
+            enhanced_s_exhibition=['sp' num2str(i) '_enhanced_exhibition_snr' num2str(j) '.wav'];
+            enhanced_s_train=['sp' num2str(i) '_enhanced_train_snr' num2str(j) '.wav'];
+            enhanced_s_street=['sp' num2str(i) '_enhanced_street_snr' num2str(j) '.wav'];
+
+            % perform the enhancement
+            wiener_as(noisy_file_white,enhanced_s_white);
+            wiener_as(noisy_file_exhibition,enhanced_s_exhibition);
+            wiener_as(noisy_file_train,enhanced_s_train);
+            wiener_as(noisy_file_street,enhanced_s_street);
         end
     end
 end
