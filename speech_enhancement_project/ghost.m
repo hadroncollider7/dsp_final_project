@@ -494,7 +494,10 @@ ax=gca;
 ax.XTick=[1 2 3 4];
 ax.XTickLabel={'White', 'Exhibition', 'Train', 'Street'};
 xlim([0 5])
-
+xlabel('Noise Type')
+ylabel('Mean PESQ')
+legend('Enhanced','Noise')
+grid
 
 figure(2)
 errorbar(snr10_enh_mean_pesq,snr10_enh_CI,'s','LineWidth',2)
@@ -505,6 +508,10 @@ ax=gca;
 ax.XTick=[1 2 3 4];
 ax.XTickLabel={'White', 'Exhibition', 'Train', 'Street'};
 xlim([0 5])
+xlabel('Noise Type')
+ylabel('Mean PESQ')
+legend('Enhanced','Noise')
+grid
 
 figure(3)
 errorbar(snr20_enh_mean_pesq,snr20_enh_CI,'s','LineWidth',2)
@@ -515,6 +522,10 @@ ax=gca;
 ax.XTick=[1 2 3 4];
 ax.XTickLabel={'White', 'Exhibition', 'Train', 'Street'};
 xlim([0 5])
+xlabel('Noise Type')
+ylabel('Mean PESQ')
+legend('Enhanced','Noise')
+grid
 
 figure(4)
 errorbar(snr30_enh_mean_pesq,snr30_enh_CI,'s','LineWidth',2)
@@ -525,6 +536,10 @@ ax=gca;
 ax.XTick=[1 2 3 4];
 ax.XTickLabel={'White', 'Exhibition', 'Train', 'Street'};
 xlim([0 5])
+xlabel('Noise Type')
+ylabel('Mean PESQ')
+legend('Enhanced','Noise')
+grid
 
 
 
