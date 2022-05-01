@@ -23,12 +23,12 @@ soundsc(y,8000);
 
 %% ***************** Part 8: Weiner Filter *********************
 clear variables;clf;clc;close all;
-% Part 1
+% Part 1. Create noise corrupted speech
 [t30]=addnoisex('sp13.wav','train.dat',30,'sp13_noisey_snr30.wav');
 [t20]=addnoisex('sp13.wav','train.dat',20,'sp13_noisey_snr20.wav');
 [t10]=addnoisex('sp13.wav','train.dat',10,'sp13_noisey_snr10.wav');
 [t00]=addnoisex('sp13.wav','train.dat',0,'sp13_noisey_snr00.wav');
-% Part 8.2. Enhance the noisey speech
+% Part 8.2. Enhance the noisy speech
 wiener_as('sp13_noisey_snr30.wav','sp13_enhanced_snr30.wav');
 wiener_as('sp13_noisey_snr20.wav','sp13_enhanced_snr20.wav');
 wiener_as('sp13_noisey_snr10.wav','sp13_enhanced_snr10.wav');
@@ -74,13 +74,17 @@ clear variables;clc;clf;close all;
 for i=1:30
     if i<10
         for j=0:10:30
+            % spXX.wav
             clean_file=['sp0' num2str(i) '.wav'];
+            % spXX_noisy_snrX.wav
             noisy_file=['sp0' num2str(i) '_noisy_snr' num2str(j) '.wav'];
             [t]=addnoisex(clean_file,'white.dat',j,noisy_file);
         end
     else
         for j=0:10:30
+            % spXX.wav
             clean_file=['sp' num2str(i) '.wav'];
+            % spXX_noisy_snrX.wav
             noisy_file=['sp' num2str(i) '_noisy_snr' num2str(j) '.wav'];
             [t]=addnoisex(clean_file,'white.dat',j,noisy_file);
         end
@@ -93,7 +97,9 @@ clear enhanced_s noisy_file;
 for i=1:30
     if i<10
         for j=0:10:30
+            % spXX_noisy_snrX.wav
             noisy_file=['sp0' num2str(i) '_noisy_snr' num2str(j) '.wav'];
+            % spXX_enhanced_snrX
             enhanced_s=['sp0' num2str(i) '_enhanced_snr' num2str(j) '.wav'];
             wiener_as(noisy_file,enhanced_s);
         end
@@ -105,27 +111,71 @@ for i=1:30
         end
     end
 end
-%% PESQ for SNR 30
+%% ****************** PESQ for white noise *********************
 clc;
-clear i j;
+clear i j k;
 clear clean_file;
-% for enhanced speech
-pval_white_enhanced=zeros(1,120);
-for i=1:120
+clear enhanced_s;
+% **********PESQ, ENHANCED SPEECH, WHITE NOISE *****************%
+
+%***************** Create 30x4 matrix ******************
+% - Rows for 30 sentences
+% - Columns for 0, 10, 20, 30 dBs 
+% *****************************************************%
+pval_white_enhanced=zeros(30,4);
+
+for i=1:30
     if i<10
+        k=1;
         for j=0:10:30
-            clean_file=['sp0' num2str(i) '.wav']
+            % spXX.wav
+            clean_file=['sp0' num2str(i) '.wav'];
+            % spXX_enhanced_snrX.wav
             enhanced_s=['sp0' num2str(i) '_enhanced_snr' num2str(j) '.wav'];
-            pval_white_enhanced(i)=pesq(clean_file,enhanced_s);
+            pval_white_enhanced(i,k)=pesq(clean_file,enhanced_s);
+            k=k+1;
         end
     else
+        k=1;
         for j=0:10:30
+            % spXX.wav
             clean_file=['sp' num2str(i) '.wav'];
+            % spXX_enhanced_snrX.wav
             enhanced_s=['sp' num2str(i) '_enhanced_snr' num2str(j) '.wav'];
-            pval_white_enhanced(i)=pesq(clean_file,enhanced_s);            
+            pval_white_enhanced(i,k)=pesq(clean_file,enhanced_s);
+            k=k+1;
         end
     end
 end
+
+%% ************* PESQ, NOISE CORRUPTED SPEECH, WHITE NOISE ***************
+clear i j k;
+clear clean_file;
+clear noisy_file;
+
+pval_white_noisy=zeros(30,4);
+for i=1:30
+    if i<10
+        k=1;
+        for j=0:10:30
+            clean_file=['sp0' num2str(i) '.wav'];
+            noisy_file=['sp0' num2str(i) '_noisy_snr' num2str(j) '.wav'];
+            pval_white_noisy(i,k)=pesq(clean_file,enhanced_s);
+            k=k+1;
+        end
+    else
+        k=1;
+        for j=0:10:30
+            clean_file=['sp' num2str(i) '.wav'];
+            noisy_file=['sp' num2str(i) '_noisy_snr' num2str(j) '.wav'];
+            pval_white_noisy(i,k)=pesq(clean_file,enhanced_s);
+            k=k+1;
+        end
+    end
+end
+
+%% PART 9-TRAIN
+
 
 
 
