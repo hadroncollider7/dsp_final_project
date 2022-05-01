@@ -213,33 +213,60 @@ for i=1:30
     end
 end
 
-%% ************* PESQ, NOISE CORRUPTED SPEECH, WHITE NOISE ***************
+%% ************* PESQ, NOISE CORRUPTED SPEECH ***************
 clear i j k;
-clear clean_file;
-clear noisy_file;
+clear pval_white_noisy;
+clear pval_exhibition_noisy;
+clear pval_train_noisy;
+clear pval_street_noisy;
 
 pval_white_noisy=zeros(30,4);
+pval_exhibition_noisy=zeros(30,4);
+pval_train_noisy=zeros(30,4);
+pval_street_noisy=zeros(30,4);
+
 for i=1:30
     if i<10
         k=1;
         for j=0:10:30
+            % spXX.wav
             clean_file=['sp0' num2str(i) '.wav'];
-            noisy_file=['sp0' num2str(i) '_noisy_snr' num2str(j) '.wav'];
-            pval_white_noisy(i,k)=pesq(clean_file,enhanced_s);
+
+            % spXX_noisy_[noiseType]_snrX.wav
+            noisy_file_white=['sp0' num2str(i) '_noisy_white_snr' num2str(j) '.wav'];
+            noisy_file_exhibition=['sp0' num2str(i) '_noisy_exhibition_snr' num2str(j) '.wav'];
+            noisy_file_train=['sp0' num2str(i) '_noisy_train_snr' num2str(j) '.wav'];
+            noisy_file_street=['sp0' num2str(i) '_noisy_street_snr' num2str(j) '.wav'];
+
+            pval_white_noisy(i,k)=pesq(clean_file,noisy_file_white);
+            pval_exhibition_noisy(i,k)=pesq(clean_file,noisy_file_exhibition);
+            pval_train_noisy(i,k)=pesq(clean_file,noisy_file_train);
+            pval_street_noisy(i,k)=pesq(clean_file,noisy_file_street);
+
             k=k+1;
         end
     else
         k=1;
         for j=0:10:30
+            % spXX.wav
             clean_file=['sp' num2str(i) '.wav'];
-            noisy_file=['sp' num2str(i) '_noisy_snr' num2str(j) '.wav'];
-            pval_white_noisy(i,k)=pesq(clean_file,enhanced_s);
+
+            % spXX_noisy_[noiseType]_snrX.wav
+            noisy_file_white=['sp' num2str(i) '_noisy_white_snr' num2str(j) '.wav'];
+            noisy_file_exhibition=['sp' num2str(i) '_noisy_exhibition_snr' num2str(j) '.wav'];
+            noisy_file_train=['sp' num2str(i) '_noisy_train_snr' num2str(j) '.wav'];
+            noisy_file_street=['sp' num2str(i) '_noisy_street_snr' num2str(j) '.wav'];
+
+            pval_white_noisy(i,k)=pesq(clean_file,noisy_file_white);
+            pval_exhibition_noisy(i,k)=pesq(clean_file,noisy_file_exhibition);
+            pval_train_noisy(i,k)=pesq(clean_file,noisy_file_train);
+            pval_street_noisy(i,k)=pesq(clean_file,noisy_file_street);
+
             k=k+1;
         end
     end
 end
 
-%% PART 9-TRAIN
 
 
 
